@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Health Inputs: HB · BP · Sugar</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="container">
+    <h1>Health Checker</h1>
+    <p class="sub">Enter your values to see an instant status summary.</p>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>Enter Measurements</h2>
+      <form id="health-form" novalidate>
+        <!-- HB -->
+        <div class="grid">
+          <div class="field">
+            <label for="hb">Hemoglobin (HB)</label>
+            <div class="input-wrap">
+              <input id="hb" name="hb" type="number" step="0.1" min="1" max="25" placeholder="e.g., 13.5" required />
+              <span class="unit">g/dL</span>
+            </div>
+            <small>Typical adult reference: 12.0 – 16.0 g/dL (general reference)</small>
+          </div>
+
+          <!-- BP -->
+          <div class="field">
+            <label>Blood Pressure (BP)</label>
+            <div class="bp-pair">
+              <div class="input-wrap">
+                <input id="bpSys" name="bpSys" type="number" step="1" min="60" max="260" placeholder="Systolic, e.g., 118" required />
+                <span class="unit">mmHg</span>
+              </div>
+              <span class="slash">/</span>
+              <div class="input-wrap">
+                <input id="bpDia" name="bpDia" type="number" step="1" min="40" max="160" placeholder="Diastolic, e.g., 76" required />
+                <span class="unit">mmHg</span>
+              </div>
+            </div>
+            <small>Categories use common adult guidelines.</small>
+          </div>
+
+          <!-- Sugar -->
+          <div class="field">
+            <label for="sugar">Blood Sugar</label>
+            <div class="input-wrap">
+              <input id="sugar" name="sugar" type="number" step="1" min="30" max="500" placeholder="e.g., 92" required />
+              <span class="unit">mg/dL</span>
+            </div>
+            <div class="mode">
+              <label class="mode-label" for="sugarMode">Test Type</label>
+              <select id="sugarMode" name="sugarMode">
+                <option value="fasting">Fasting</option>
+                <option value="random">Random / Post-meal</option>
+              </select>
+            </div>
+            <small>
+              Fasting: Normal 70–99, Prediabetes 100–125, Diabetes ≥126. Random: Normal &lt;140, Prediabetes 140–199, Diabetes ≥200.
+            </small>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button type="submit" class="btn primary">Check Status</button>
+          <button type="reset" class="btn ghost" id="clearBtn">Clear</button>
+        </div>
+        <p id="formError" class="error" role="alert" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="results">
+      <div class="card">
+        <h2>Results</h2>
+        <div class="result-grid">
+          <article class="result-card" id="hbCard">
+            <h3>HB</h3>
+            <p class="value" id="hbValue">—</p>
+            <span class="badge" id="hbBadge">Awaiting input</span>
+            <p class="note" id="hbNote"></p>
+          </article>
+
+          <article class="result-card" id="bpCard">
+            <h3>BP</h3>
+            <p class="value" id="bpValue">—</p>
+            <span class="badge" id="bpBadge">Awaiting input</span>
+            <p class="note" id="bpNote"></p>
+          </article>
+
+          <article class="result-card" id="sugarCard">
+            <h3>Sugar</h3>
+            <p class="value" id="sugarValue">—</p>
+            <span class="badge" id="sugarBadge">Awaiting input</span>
+            <p class="note" id="sugarNote"></p>
+          </article>
+        </div>
+        <p class="disclaimer">
+          This tool is for educational use only and not a medical diagnosis. Consult a qualified healthcare professional for clinical decisions.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container foot">
+    <small>© <span id="year"></span> Health Checker • Simple student project</small>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
